@@ -1,0 +1,14 @@
+version: '3'
+services:
+  artnpics:
+    image: artandpics/exif-tester
+    labels:
+      com.example.description: "Art and Pics EXIF Test Application"
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
