@@ -6,7 +6,11 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
-      WELCOME
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"  class="btn btn-primary">Submit Image</button>
+      </form>
     </div>
 </div>
   

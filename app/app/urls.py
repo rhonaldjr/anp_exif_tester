@@ -24,6 +24,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r"^$", views.Index.as_view(), name="index"),
+    url(r'^imglibrary/', include('imglibrary.urls', namespace='imglibrary')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

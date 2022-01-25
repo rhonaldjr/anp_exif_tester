@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block body_content %} 
+
+<div class="container-fluid">
+    {% if messages %}
+    <div class='row'>
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        {% else %}
+          <div class="alert alert-primary" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class='row'>
+        <img class="card-img-top img-fluid thumbnail-512px rounded" src="/media/{{imagefile.image_file}}" alt="Preview Image">
+    </div>
+
+    {% if exif_info %}
+        <div class='row'>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for k, v in exif_info.items %}
+                        <tr>
+                            {% for key, val in v.items %}
+                                {% if not val is None %}
+                                    <td>{{k}}</td>
+                                    <td>{{val}}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+  
+{% endblock %}
